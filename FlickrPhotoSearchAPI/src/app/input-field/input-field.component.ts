@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-input-field',
@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InputFieldComponent implements OnInit {
 
+  inputSearch: string = "";
+  @Output() outputText = new EventEmitter<string>();
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  change() {
+    this.outputText.emit(this.inputSearch);
+  }
 }

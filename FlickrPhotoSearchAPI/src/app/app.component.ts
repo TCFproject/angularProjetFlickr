@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Moteur de recherche de photos avec l\'API Flickr';
+
+  reception(event){
+    console.log(event);
+  }
 }

@@ -1,18 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http'
+import { FormsModule } from '@angular/forms'
 
 import { AppComponent } from './app.component';
 import { InputFieldComponent } from './input-field/input-field.component';
 import { ButtonFieldComponent } from './button-field/button-field.component';
+import { ImagesLayoutComponent } from './images-layout/images-layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InputFieldComponent,
-    ButtonFieldComponent
+    ButtonFieldComponent,
+    ImagesLayoutComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
