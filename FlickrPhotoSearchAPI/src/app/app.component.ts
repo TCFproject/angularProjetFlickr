@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +11,5 @@ export class AppComponent {
 
   reception(event) {
     this.tags = event;
-    console.log(this.tags);
   }
 }

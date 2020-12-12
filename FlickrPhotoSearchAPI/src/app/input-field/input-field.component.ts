@@ -6,13 +6,11 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./input-field.component.css']
 })
 export class InputFieldComponent implements OnInit {
-
   inputSearch: string = "";
   @Output() outputText = new EventEmitter<string>();
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  
+  constructor() {}
+  ngOnInit(): void {}
 
   change() {
     this.outputText.emit(this.inputSearch);
