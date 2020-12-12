@@ -9,7 +9,7 @@ export class AppComponent {
   title = 'Moteur de recherche de photos avec l\'API Flickr';
   tags = "";
 
-  reception(event) {
+  receptionInput(event) {
     this.tags = event;
   }
 }

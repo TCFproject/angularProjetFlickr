@@ -12,6 +12,8 @@ export class ButtonFieldComponent implements OnInit {
   ngOnInit(): void {}
 
   rechercher() {
-    alert(this.tags);
+    if (this.tags != "") {
+      alert(this.tags);
+    }
   }
 }
