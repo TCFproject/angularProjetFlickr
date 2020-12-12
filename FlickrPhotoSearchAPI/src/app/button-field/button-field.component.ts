@@ -6,17 +6,12 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./button-field.component.css']
 })
 export class ButtonFieldComponent implements OnInit {
-  
-  tags = "";
+  @Input() tags: string;
 
-  constructor() { }
+  constructor() {}
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-
-  rechercher(input: string) {
-    this.tags += input;
+  rechercher() {
     alert(this.tags);
-    // this.tags.emit(tags);
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Moteur de recherche de photos avec l\'API Flickr';
+  tags = "";
 
-  reception(event){
-    console.log(event);
+  reception(event) {
+    this.tags = event;
+    console.log(this.tags);
   }
 }
