@@ -1,1 +1,10 @@
-<button type="submit">Rechercher</button>
+<div>
+  <button (click)="Dropdown()"><<</button>
+  <button (click)="Dropup()">>></button>
+  <table width="100%" *ngIf="Tags">
+    <p>{{passage}} / {{this.Tags.length}}</p>
+    <tr *ngFor="let a of test()">
+      <td><button (click)="ouvrirInfo(Tags[a.Id])"> <img [src]="a.lien"> </button></td>
+    </tr>
+  </table>
+</div>
