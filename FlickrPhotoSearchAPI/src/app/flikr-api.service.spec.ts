@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ImagesService } from './images.service';
+import { FlikrAPIService } from './flikr-api.service';
 
-describe('ImagesService', () => {
-  let service: ImagesService;
+describe('FlikrAPIService', () => {
+  let service: FlikrAPIService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ImagesService);
+    service = TestBed.inject(FlikrAPIService);
   });
 
   it('should be created', () => {

@@ -6,10 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Moteur de recherche de photos avec l\'API Flickr';
-  tags = "";
-
-  receptionInput(event) {
-    this.tags = event;
-  }
+  title = 'FlickrPhotoSearchAPI';
 }

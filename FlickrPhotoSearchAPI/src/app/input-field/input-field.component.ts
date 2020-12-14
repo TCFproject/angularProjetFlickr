@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FlikrAPIService } from '../flikr-api.service';
 
 @Component({
   selector: 'app-input-field',
@@ -6,13 +7,21 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./input-field.component.css']
 })
 export class InputFieldComponent implements OnInit {
-  inputText: string = "";
-  @Output() envoiVersParent = new EventEmitter<string>();
 
-  constructor() {}
-  ngOnInit(): void {}
+  constructor(private imgApi: FlikrAPIService) { }
+  // tslint:disable-next-line:ban-types
+  list: [];
 
-  textChange() {
-    this.envoiVersParent.emit(this.inputText);
+  ngOnInit(): void {
+  }
+
+  // tslint:disable-next-line:typedef
+  affiche(e) {
+    this.imgApi.getFlikrImg(e.value).subscribe(
+      data => {
+        console.log(data);
+        this.list = data.photos.photo;
+      }
+    );
   }
 }

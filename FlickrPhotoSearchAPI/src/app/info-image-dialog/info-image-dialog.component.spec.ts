@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ImagesLayoutComponent } from './images-layout.component';
+import { InfoImageDialogComponent } from './info-image-dialog.component';
 
-describe('ImagesLayoutComponent', () => {
-  let component: ImagesLayoutComponent;
-  let fixture: ComponentFixture<ImagesLayoutComponent>;
+describe('InfoImageDialogComponent', () => {
+  let component: InfoImageDialogComponent;
+  let fixture: ComponentFixture<InfoImageDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ImagesLayoutComponent ]
+      declarations: [ InfoImageDialogComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ImagesLayoutComponent);
+    fixture = TestBed.createComponent(InfoImageDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

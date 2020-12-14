@@ -1,1 +1,3 @@
-<input type="text" (keyup)='textChange()' [(ngModel)]="inputText" placeholder="tags">
+<input type="text" #tags name="inputSearch" id="inputSearch" placeholder="tags">
+<button (click)="affiche(tags)">Rechercher</button>
+<app-button-field [Tags]="list"></app-button-field>
