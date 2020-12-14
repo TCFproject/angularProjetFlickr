@@ -12,14 +12,9 @@ export class ButtonFieldComponent implements OnInit {
     @Input() Tags;
 
     constructor(private imgApi: FlikrAPIService, private dialog: MatDialog) { }
-    donnee: any[];
     passage = 0;
     ngOnInit(): void {
-        this.imgApi.getFlikrImg('nature').subscribe(
-            data => {
-                this.donnee = data.photos.photo;
-            }
-        );
+
     }
   test(): { lien: string; Id: number }[] {return [
     // tslint:disable-next-line:max-line-length
@@ -36,10 +31,10 @@ export class ButtonFieldComponent implements OnInit {
   // tslint:disable-next-line:typedef
   Dropup() {
     // @ts-ignore
-    if (this.passage >= this.donnee.length - 5){
-      this.passage = this.donnee.length - 5;
+    if (this.passage >= this.Tags.length - 5){
+      this.passage = this.Tags.length - 5;
     }else {
-      this.passage++;
+      this.passage += 5;
     }
   }
 
@@ -49,7 +44,7 @@ export class ButtonFieldComponent implements OnInit {
     if (this.passage === 0){
       this.passage = 0;
     }else {
-      this.passage--;
+      this.passage -= 5;
     }
   }
   // tslint:disable-next-line:typedef
