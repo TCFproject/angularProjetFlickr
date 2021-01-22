@@ -1,10 +1,12 @@
 <div>
-  <button (click)="Dropdown()"><<</button>
-  <button (click)="Dropup()">>></button>
+  <button *ngIf="Tags" (click)="Dropdown()" style="margin: 10px 10px;"><<</button>
+  <button *ngIf="Tags" (click)="Dropup()" style="margin: 10px 10px;">>></button>
   <table width="100%" *ngIf="Tags">
-    <p>{{passage}} / {{this.Tags.length}}</p>
+    <p>{{passage}} / {{this.Tags.length-1}}</p>
     <tr *ngFor="let a of test()">
       <td><button (click)="ouvrirInfo(Tags[a.Id])"> <img [src]="a.lien"> </button></td>
     </tr>
   </table>
+  <button *ngIf="Tags" (click)="Dropdown()" style="margin: 10px 10px;"><<</button>
+  <button *ngIf="Tags" (click)="Dropup()" style="margin: 10px 10px;">>></button>
 </div>
