@@ -9,13 +9,11 @@ import { FlikrAPIService } from '../flikr-api.service';
 export class InputFieldComponent implements OnInit {
 
   constructor(private imgApi: FlikrAPIService) { }
-  // tslint:disable-next-line:ban-types
   list: [];
 
   ngOnInit(): void {
   }
 
-  // tslint:disable-next-line:typedef
   affiche(e) {
     this.imgApi.getFlikrImg(e.value).subscribe(
       data => {

@@ -9,22 +9,23 @@ import {FlikrAPIService} from '../flikr-api.service';
 })
 export class InfoImageDialogComponent implements OnInit {
 
-  constructor(private imgApi: FlikrAPIService, @Inject(MAT_DIALOG_DATA) public data: {infos: object}) { }
+  constructor(
+    private imgApi: 
+      FlikrAPIService, 
+      @Inject(MAT_DIALOG_DATA) public data: { infos: object }
+  ) { }
 
-  Auteur: string;
-  Titre: string;
-  dateposter: string;
-  dateupload: string;
+  auteur: string;
+  titre: string;
+  datepost: string;
 
-  donnee = this.data.infos;
+  infos = this.data.infos;
   ngOnInit(): void {
     // @ts-ignore
-    this.imgApi.getFlikrInfo(this.donnee.id).subscribe(data => {
-      console.log(data.photo);
-      this.Auteur = data.photo.owner.username;
-      this.dateupload = data.photo.dateuploaded;
-      this.dateposter = data.photo.dates.posted;
-      this.Titre = data.photo.title._content;
+    this.imgApi.getFlikrInfo(this.infos.id).subscribe(data => {
+      this.auteur = data.photo.owner.username;
+      this.titre = data.photo.title._content;
+      this.datepost = new Date(data.photo.dates.posted * 1000).toLocaleDateString("fr-FR");
     });
   }
 
