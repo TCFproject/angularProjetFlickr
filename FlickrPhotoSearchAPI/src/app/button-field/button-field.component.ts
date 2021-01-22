@@ -9,28 +9,22 @@ import {InfoImageDialogComponent} from '../info-image-dialog/info-image-dialog.c
   styleUrls: ['./button-field.component.css']
 })
 export class ButtonFieldComponent implements OnInit {
-    @Input() Tags;
+  @Input() Tags;
 
-    constructor(private imgApi: FlikrAPIService, private dialog: MatDialog) { }
-    passage = 0;
-    ngOnInit(): void {
+  constructor(private imgApi: FlikrAPIService, private dialog: MatDialog) { }
+  passage = 0;
+  ngOnInit(): void {}
+  test(): { lien: string; Id: number }[] {
+    return [
+      {lien: 'https://live.staticflickr.com/' + this.Tags[this.passage].server + '/' + this.Tags[this.passage].id + '_' + this.Tags[this.passage].secret + '.jpg', Id: this.passage},
+      {lien: 'https://live.staticflickr.com/' + this.Tags[this.passage + 1].server + '/' + this.Tags[this.passage + 1].id + '_' + this.Tags[this.passage + 1].secret + '.jpg', Id: this.passage + 1},
+      {lien: 'https://live.staticflickr.com/' + this.Tags[this.passage + 2].server + '/' + this.Tags[this.passage + 2].id + '_' + this.Tags[this.passage + 2].secret + '.jpg', Id: this.passage + 2},
+      {lien: 'https://live.staticflickr.com/' + this.Tags[this.passage + 3].server + '/' + this.Tags[this.passage + 3].id + '_' + this.Tags[this.passage + 3].secret + '.jpg', Id: this.passage + 3},
+      {lien: 'https://live.staticflickr.com/' + this.Tags[this.passage + 4].server + '/' + this.Tags[this.passage + 4].id + '_' + this.Tags[this.passage + 4].secret + '.jpg', Id: this.passage + 4} 
+    ]; 
+  }
 
-    }
-  test(): { lien: string; Id: number }[] {return [
-    // tslint:disable-next-line:max-line-length
-    {lien: 'https://live.staticflickr.com/' + this.Tags[this.passage].server + '/' + this.Tags[this.passage].id + '_' + this.Tags[this.passage].secret + '.jpg', Id: this.passage},
-    // tslint:disable-next-line:max-line-length
-    {lien: 'https://live.staticflickr.com/' + this.Tags[this.passage + 1].server + '/' + this.Tags[this.passage + 1].id + '_' + this.Tags[this.passage + 1].secret + '.jpg', Id: this.passage + 1},
-    // tslint:disable-next-line:max-line-length
-    {lien: 'https://live.staticflickr.com/' + this.Tags[this.passage + 2].server + '/' + this.Tags[this.passage + 2].id + '_' + this.Tags[this.passage + 2].secret + '.jpg', Id: this.passage + 2},
-    // tslint:disable-next-line:max-line-length
-    {lien: 'https://live.staticflickr.com/' + this.Tags[this.passage + 3].server + '/' + this.Tags[this.passage + 3].id + '_' + this.Tags[this.passage + 3].secret + '.jpg', Id: this.passage + 3},
-    // tslint:disable-next-line:max-line-length
-    {lien: 'https://live.staticflickr.com/' + this.Tags[this.passage + 4].server + '/' + this.Tags[this.passage + 4].id + '_' + this.Tags[this.passage + 4].secret + '.jpg', Id: this.passage + 4} ]; }
-
-  // tslint:disable-next-line:typedef
   Dropup() {
-    // @ts-ignore
     if (this.passage >= this.Tags.length - 5){
       this.passage = this.Tags.length - 5;
     }else {
@@ -38,16 +32,14 @@ export class ButtonFieldComponent implements OnInit {
     }
   }
 
-  // tslint:disable-next-line:typedef
   Dropdown() {
-    // @ts-ignore
     if (this.passage === 0){
       this.passage = 0;
     }else {
       this.passage -= 5;
     }
   }
-  // tslint:disable-next-line:typedef
+  
   ouvrirInfo(info) {
       const dial = this.dialog.open(InfoImageDialogComponent, {data: {infos: info}});
   }
