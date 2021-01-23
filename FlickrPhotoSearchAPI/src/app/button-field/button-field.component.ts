@@ -9,24 +9,24 @@ import {InfoImageDialogComponent} from '../info-image-dialog/info-image-dialog.c
   styleUrls: ['./button-field.component.css']
 })
 export class ButtonFieldComponent implements OnInit {
-    @Input() Tags;
+    @Input() tags;
 
     constructor(private imgApi: FlikrAPIService, private dialog: MatDialog) { }
     donnee: any[];
     passage = 0;
     ngOnInit(): void {
-        this.imgApi.getFlikrImg(this.Tags).subscribe(
+        this.imgApi.getFlikrImg(this.tags).subscribe(
             data => {
                 this.donnee = data.photos.photo;
             }
         );
     }
   test(): { lien: string; Id: number }[] {return [
-    {lien: 'https://live.staticflickr.com/' + this.Tags[this.passage].server + '/' + this.Tags[this.passage].id + '_' + this.Tags[this.passage].secret + '.jpg', Id: this.passage},
-    {lien: 'https://live.staticflickr.com/' + this.Tags[this.passage + 1].server + '/' + this.Tags[this.passage + 1].id + '_' + this.Tags[this.passage + 1].secret + '.jpg', Id: this.passage + 1},
-    {lien: 'https://live.staticflickr.com/' + this.Tags[this.passage + 2].server + '/' + this.Tags[this.passage + 2].id + '_' + this.Tags[this.passage + 2].secret + '.jpg', Id: this.passage + 2},
-    {lien: 'https://live.staticflickr.com/' + this.Tags[this.passage + 3].server + '/' + this.Tags[this.passage + 3].id + '_' + this.Tags[this.passage + 3].secret + '.jpg', Id: this.passage + 3},
-    {lien: 'https://live.staticflickr.com/' + this.Tags[this.passage + 4].server + '/' + this.Tags[this.passage + 4].id + '_' + this.Tags[this.passage + 4].secret + '.jpg', Id: this.passage + 4} ]; }
+    {lien: 'https://live.staticflickr.com/' + this.tags[this.passage].server + '/' + this.tags[this.passage].id + '_' + this.tags[this.passage].secret + '.jpg', Id: this.passage},
+    {lien: 'https://live.staticflickr.com/' + this.tags[this.passage + 1].server + '/' + this.tags[this.passage + 1].id + '_' + this.tags[this.passage + 1].secret + '.jpg', Id: this.passage + 1},
+    {lien: 'https://live.staticflickr.com/' + this.tags[this.passage + 2].server + '/' + this.tags[this.passage + 2].id + '_' + this.tags[this.passage + 2].secret + '.jpg', Id: this.passage + 2},
+    {lien: 'https://live.staticflickr.com/' + this.tags[this.passage + 3].server + '/' + this.tags[this.passage + 3].id + '_' + this.tags[this.passage + 3].secret + '.jpg', Id: this.passage + 3},
+    {lien: 'https://live.staticflickr.com/' + this.tags[this.passage + 4].server + '/' + this.tags[this.passage + 4].id + '_' + this.tags[this.passage + 4].secret + '.jpg', Id: this.passage + 4} ]; }
 
   Dropup() {
     if (this.passage >= this.donnee.length - 5){
