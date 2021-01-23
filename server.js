@@ -1,10 +1,10 @@
-var express = require("express");
-var mongo = require("mongoose");
+var express = require("./FlickrPhotoSearchAPI/node_modules/express");
+var mongo = require("./FlickrPhotoSearchAPI/node_modules/mongoose");
 const LOCAL_DB = "mongodb://localhost:27017/flickr";
 
 var db = mongo.connect(LOCAL_DB, (err, res) => {
   if (err) { console.log(err); }
-  else { console.log('Connected to ' + db); }
+  else { console.log('Connected to local db.'); }
 });
 
 var app = express();
