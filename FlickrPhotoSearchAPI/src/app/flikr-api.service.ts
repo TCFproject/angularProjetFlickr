@@ -8,12 +8,13 @@ import { Observable } from 'rxjs';
 export class FlikrAPIService {
 
   constructor(private http: HttpClient) { }
-  api_key = '5a0d7691d6759de7c4bb628a6134ae64';
 
-  getFlikrImg(tag): Observable<any>{
+  api_key = 'b4de9b969ec87907bcd9c050956956dc';
+
+  getFlikrImg(tag): Observable<any> {
     return this.http.get('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + this.api_key + '&tags=' + tag + '&format=json&nojsoncallback=1');
   }
-  getFlikrInfo(photo_id): Observable<any>{
+  getFlikrInfo(photo_id): Observable<any> {
     return this.http.get('https://www.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=' + this.api_key + '&photo_id=' + photo_id + '&format=json&nojsoncallback=1');
   }
 }
