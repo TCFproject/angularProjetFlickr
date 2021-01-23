@@ -21,7 +21,7 @@ export class ButtonFieldComponent implements OnInit {
             }
         );
     }
-  test(): { lien: string; Id: number }[] {return [
+    images(): { lien: string; Id: number }[] {return [
     {lien: 'https://live.staticflickr.com/' + this.tags[this.passage].server + '/' + this.tags[this.passage].id + '_' + this.tags[this.passage].secret + '.jpg', Id: this.passage},
     {lien: 'https://live.staticflickr.com/' + this.tags[this.passage + 1].server + '/' + this.tags[this.passage + 1].id + '_' + this.tags[this.passage + 1].secret + '.jpg', Id: this.passage + 1},
     {lien: 'https://live.staticflickr.com/' + this.tags[this.passage + 2].server + '/' + this.tags[this.passage + 2].id + '_' + this.tags[this.passage + 2].secret + '.jpg', Id: this.passage + 2},
