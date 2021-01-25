@@ -9,6 +9,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 var imageSchema = mongo.Schema({
+  tag: String,
   url: String,
   auteur: String,
   titre: String,
@@ -34,8 +35,16 @@ app.get("/images", (req, res) => {
   });
 });
 
+app.get("/images/:tag", (req, res) => {
+  Image.find({ tag: req.params.tag }, (err, images) => {
+    if (err) { console.log(err); }
+    else { res.json(images); }
+  });
+});
+
 app.post("/images", (req, res) => {
   var image = new Image();
+  image.tag = req.body.tag;
   image.url = req.body.url;
   image.auteur = req.body.auteur;
   image.titre = req.body.titre;
