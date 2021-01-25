@@ -10,18 +10,16 @@ export class InputFieldComponent implements OnInit {
 
   constructor(private imgApi: FlikrAPIService) { }
   list: [];
-  // tslint:disable-next-line:ban-types
   private info: String = '';
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   affiche(e) {
-    this.imgApi.getFlikrImg(this.info).subscribe(
+    this.imgApi.getFlikrImg(e.value).subscribe(
       data => {
         console.log(data.stat);
-        if (data.stat === 'fail'){
-          alert('Image non-trouvé');
+        if (data.stat === 'fail') {
+          alert('Image non-trouvée');
         }
         this.list = data.photos.photo;
         this.info = '';
@@ -29,16 +27,9 @@ export class InputFieldComponent implements OnInit {
     );
   }
 
-  // tslint:disable-next-line:typedef
-  recupInfo(tags: HTMLInputElement, text: HTMLInputElement, geo: HTMLInputElement) {
+  recupInfo(tags: HTMLInputElement) {
     if (tags.value !== ''){
       this.info += 'tags=' + tags.value + '&';
-    }
-    if (text.value !== ''){
-      this.info += 'text=' + text.value + '&';
-    }
-    if (geo.value !== ''){
-      this.info += 'has_geo=' + geo.value + '&';
     }
     console.log(this.info);
   }
