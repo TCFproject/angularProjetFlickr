@@ -1,5 +1,5 @@
 <input type="text" #tags name="inputSearch" id="inputSearch" placeholder="Tags">
 <input type="text" #text name="inputSearch" id="inputSearch2" placeholder="Text">
 <input type="text" #geo name="inputSearch" id="inputSearch3" placeholder="Geo">
-<button (click)="affiche(tags); recupInfo(tags,text,geo)">Rechercher</button>
+<button (click)="affiche(recupInfo(tags,text,geo)); ">Rechercher</button>
 <app-button-field [Tags]="list"></app-button-field>

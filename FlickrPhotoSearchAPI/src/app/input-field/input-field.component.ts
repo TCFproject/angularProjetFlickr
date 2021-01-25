@@ -19,7 +19,7 @@ export class InputFieldComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   affiche(e) {
-    this.imgApi.getFlikrImg(this.info).subscribe(
+    this.imgApi.getFlikrImg(e).subscribe(
       data => {
         console.log(data.stat);
         if (data.stat === 'fail'){
@@ -42,6 +42,6 @@ export class InputFieldComponent implements OnInit {
     if (geo.value !== ''){
       this.info += 'has_geo=' + geo.value + '&';
     }
-    console.log(this.info);
+    return this.info;
   }
 }
