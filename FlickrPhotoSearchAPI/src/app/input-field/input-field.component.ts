@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FlikrAPIService } from '../flikr-api.service';
 
 @Component({
@@ -9,7 +9,6 @@ import { FlikrAPIService } from '../flikr-api.service';
 export class InputFieldComponent implements OnInit {
 
   constructor(private imgApi: FlikrAPIService) { }
-  // tslint:disable-next-line:ban-types
   list: [];
   // tslint:disable-next-line:ban-types
   private info: String = '';
@@ -17,7 +16,6 @@ export class InputFieldComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // tslint:disable-next-line:typedef
   affiche(e) {
     this.imgApi.getFlikrImg(this.info).subscribe(
       data => {
