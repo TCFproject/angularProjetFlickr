@@ -39,8 +39,8 @@ app.get("/images/:tag", async (req, res) => {
   });
 });
 
-app.delete("/images/:url", async (req, res) => {
-  await Image.deleteOne({ url: req.params.url }, (err, images) => {
+app.delete("/images/:tag", async (req, res) => {
+  await Image.deleteOne({ tag: req.params.tag }, (err, images) => {
     if (err) { console.log(err); }
     else { res.send("Supprimé de la table."); }
   });
