@@ -28,8 +28,8 @@ export class ButtonFieldComponent implements OnInit {
   }
 
   Dropup() {
-    if (this.passage >= this.donnee.length - 5) {
-      this.passage = this.donnee.length - 5;
+    if (this.passage >= this.tags.length - 5) {
+      this.passage = this.tags.length - 5;
     } else {
       this.passage += 5;
     }
