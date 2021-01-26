@@ -24,6 +24,7 @@ export class FlikrAPIService {
     }, {headers: this.httpHeaders});
     return this.http.get('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + this.api_key + '&tags=' + tag + '&format=json&nojsoncallback=1');
   }
+
   getFlikrInfo(photo_id): Observable<any> {
     return this.http.get('https://www.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=' + this.api_key + '&photo_id=' + photo_id + '&format=json&nojsoncallback=1');
   }
