@@ -4,7 +4,7 @@ var bodyParser = require("./FlickrPhotoSearchAPI/node_modules/body-parser");
 var cors = require("./FlickrPhotoSearchAPI/node_modules/cors");
 var app = express();
 const PORT = 7000;
-const LOCAL_DB = "mongodb://localhost:27017";
+const LOCAL_DB = "mongodb://localhost:27017/sev";
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -13,10 +13,10 @@ app.use(cors());
 
 var imageSchema = mongo.Schema({
   tag: String,
-  url: [{type: String}],
-  auteur: [{type: String}],
-  titre: [{type: String}],
-  datepost: [{type: String}]
+  photos: [{type: String}],
+  auteurs: [{type: String}],
+  titres: [{type: String}],
+  datespost: [{type: String}]
 });
 var Image = mongo.model('Image', imageSchema, 'images');
 
@@ -49,10 +49,10 @@ app.delete("/images/:tag", async (req, res) => {
 app.post("/images", async (req, res) => {
   var image = new Image();
   image.tag = req.body.tag;
-  image.url = req.body.url;
-  image.auteur = req.body.auteur;
-  image.titre = req.body.titre;
-  image.datepost = req.body.datepost;
+  image.photos = req.body.photos;
+  image.auteurs = req.body.auteurs;
+  image.titres = req.body.titres;
+  image.datespost = req.body.datespost;
   await image.save((err) => {
     if (err) { res.send(err); }
     else { res.send("Nouveau set d'images ajouté à la base"); }
