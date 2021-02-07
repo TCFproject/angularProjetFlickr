@@ -12,7 +12,6 @@ export class ButtonFieldComponent implements OnInit {
   @Input() tags;
 
   constructor(private imgApi: FlikrAPIService, private dialog: MatDialog) { }
-  donnee: any[];
   passage = 0;
 
   ngOnInit(): void {}
