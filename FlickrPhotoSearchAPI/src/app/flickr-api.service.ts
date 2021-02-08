@@ -4,12 +4,12 @@ import { HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 
-type FlickrResponse = { photos: { photo: {} } };
+// type FlickrResponse = { photos: { photo: {} } };
 
 @Injectable({
   providedIn: 'root'
 })
-export class FlikrAPIService {
+export class FlickrAPIService {
 
   constructor(private http: HttpClient) { }
 
@@ -21,7 +21,7 @@ export class FlikrAPIService {
   titres = ['titre', 'véhicule'];
   datespost = ['12/024', '18276'];
 
-  getFlikrImg(tag: string): Observable<any> {
+  getFlickrImg(tag: string): Observable<any> {
     let apiUrl = 'https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + this.api_key + '&tags=' + tag + '&format=json&nojsoncallback=1';
     return this.http.get(this.NODEJS + "/" + tag.toLowerCase()).pipe(
       mergeMap(
@@ -30,7 +30,8 @@ export class FlikrAPIService {
             return this.http.get(apiUrl)
               .pipe(
                 mergeMap(
-                  (getResult: FlickrResponse) => {
+                  (getResult: any) => {
+                    // TODO : getFlickrInfo pour le post
                     this.http.post(this.NODEJS, { 
                       "tag": tag,
                       "photos": getResult.photos.photo,
@@ -38,6 +39,7 @@ export class FlikrAPIService {
                       "titres": this.titres,
                       "datespost": this.datespost
                     }, {headers: this.httpHeaders}).subscribe();
+                    // console.log(getResult);
                     return of(getResult);
                   }
                 )
@@ -50,7 +52,7 @@ export class FlikrAPIService {
     );
   }
 
-  getFlikrInfo(photo_id): Observable<any> {
+  getFlickrInfo(photo_id): Observable<any> {
     return this.http.get('https://www.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=' + this.api_key + '&photo_id=' + photo_id + '&format=json&nojsoncallback=1');
   }
 }

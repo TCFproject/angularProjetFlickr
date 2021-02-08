@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FlikrAPIService } from '../flikr-api.service';
+import { FlickrAPIService } from '../flickr-api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { InfoImageDialogComponent } from '../info-image-dialog/info-image-dialog.component';
 
@@ -11,7 +11,7 @@ import { InfoImageDialogComponent } from '../info-image-dialog/info-image-dialog
 export class ButtonFieldComponent implements OnInit {
   @Input() tags;
 
-  constructor(private imgApi: FlikrAPIService, private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog) { }
   passage = 0;
 
   ngOnInit(): void {}
@@ -35,7 +35,7 @@ export class ButtonFieldComponent implements OnInit {
   }
 
   Dropdown() {
-    if (this.passage === 0) {
+    if (this.passage <= 0) {
       this.passage = 0;
     } else {
       this.passage -= 5;
