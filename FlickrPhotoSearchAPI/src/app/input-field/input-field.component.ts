@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FlikrAPIService } from '../flikr-api.service';
+import { FlickrAPIService } from '../flickr-api.service';
 
 @Component({
   selector: 'app-input-field',
@@ -8,16 +8,15 @@ import { FlikrAPIService } from '../flikr-api.service';
 })
 export class InputFieldComponent implements OnInit {
 
-  constructor(private imgApi: FlikrAPIService) { }
+  constructor(private imgApi: FlickrAPIService) { }
   list: [];
   private info: String = '';
 
   ngOnInit(): void {}
 
-  affiche(e) {
-    this.imgApi.getFlikrImg(e.value).subscribe(
+  affiche(tag) {
+    this.imgApi.getFlickrImg(tag.value).subscribe(
       data => {
-        console.log(data.stat);
         if (data.stat === 'fail') {
           alert('Image non-trouvée');
         }

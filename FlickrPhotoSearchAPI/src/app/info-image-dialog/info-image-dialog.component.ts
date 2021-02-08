@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {FlikrAPIService} from '../flikr-api.service';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FlickrAPIService } from '../flickr-api.service';
 
 @Component({
   selector: 'app-info-image-dialog',
@@ -11,7 +11,7 @@ export class InfoImageDialogComponent implements OnInit {
 
   constructor(
     private imgApi: 
-      FlikrAPIService, 
+      FlickrAPIService, 
       @Inject(MAT_DIALOG_DATA) public data: { infos: object }
   ) { }
 
@@ -22,7 +22,7 @@ export class InfoImageDialogComponent implements OnInit {
   infos = this.data.infos;
   ngOnInit(): void {
     // @ts-ignore
-    this.imgApi.getFlikrInfo(this.infos.id).subscribe(data => {
+    this.imgApi.getFlickrInfo(this.infos.id).subscribe(data => {
       this.auteur = data.photo.owner.username;
       this.titre = data.photo.title._content;
       this.datepost = new Date(data.photo.dates.posted * 1000).toLocaleDateString("fr-FR");
