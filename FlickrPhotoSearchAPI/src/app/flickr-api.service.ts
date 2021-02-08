@@ -16,10 +16,10 @@ export class FlickrAPIService {
   api_key: string = 'e3ec972c03734ea369c37f2d382f6ed8';
   NODEJS: string = "http://localhost:7000/images";
   httpHeaders: HttpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
-  photosInfos = ['swag', 'toto'];
-  auteurs = ['pareil', 'test'];
-  titres = ['titre', 'véhicule'];
-  datespost = ['12/024', '18276'];
+  photosInfos = [];
+  auteurs = [];
+  titres = [];
+  datespost = [];
 
   getFlickrImg(tag: string): Observable<any> {
     let apiUrl = 'https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + this.api_key + '&tags=' + tag + '&format=json&nojsoncallback=1';
