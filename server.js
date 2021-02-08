@@ -13,10 +13,10 @@ app.use(cors());
 
 var imageSchema = mongo.Schema({
   tag: String,
-  photos: [{type: String}],
-  auteurs: [{type: String}],
-  titres: [{type: String}],
-  datespost: [{type: String}]
+  photos: { photo: {} },
+  auteurs: [],
+  titres: [],
+  datespost: []
 });
 var Image = mongo.model('Image', imageSchema, 'images');
 
@@ -49,7 +49,7 @@ app.delete("/images/:tag", async (req, res) => {
 app.post("/images", async (req, res) => {
   var image = new Image();
   image.tag = req.body.tag;
-  image.photos = req.body.photos;
+  image.photos.photo = req.body.photos;
   image.auteurs = req.body.auteurs;
   image.titres = req.body.titres;
   image.datespost = req.body.datespost;

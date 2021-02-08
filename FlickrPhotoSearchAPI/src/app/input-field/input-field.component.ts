@@ -14,10 +14,9 @@ export class InputFieldComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  affiche(e) {
-    this.imgApi.getFlikrImg(e.value).subscribe(
+  affiche(tag) {
+    this.imgApi.getFlikrImg(tag.value).subscribe(
       data => {
-        console.log(data.stat);
         if (data.stat === 'fail') {
           alert('Image non-trouvée');
         }
