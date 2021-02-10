@@ -7,11 +7,9 @@ import { FlickrAPIService } from '../flickr-api.service';
   styleUrls: ['./input-field.component.css']
 })
 export class InputFieldComponent implements OnInit {
-
-  constructor(private imgApi: FlickrAPIService) { }
   list: [];
-  private info: String = '';
 
+  constructor(private imgApi: FlickrAPIService) {}
   ngOnInit(): void {}
 
   affiche(tag) {
@@ -21,15 +19,7 @@ export class InputFieldComponent implements OnInit {
           alert('Image non-trouvée');
         }
         this.list = data.photos.photo;
-        this.info = '';
       }
     );
-  }
-
-  recupInfo(tags: HTMLInputElement) {
-    if (tags.value !== ''){
-      this.info += 'tags=' + tags.value + '&';
-    }
-    console.log(this.info);
   }
 }

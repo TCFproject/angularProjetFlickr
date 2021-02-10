@@ -1,12 +1,16 @@
 <div>
-  <button *ngIf="tags" (click)="Dropdown()" style="margin: 10px 10px;"><<</button>
-  <button *ngIf="tags" (click)="Dropup()" style="margin: 10px 10px;">>></button>
+  <div *ngIf="tags.length > photosParPage">
+    <button *ngIf="tags" (click)="Dropdown()" style="margin: 10px 10px;"><<</button>
+    <button *ngIf="tags" (click)="Dropup()" style="margin: 10px 10px;">>></button>
+  </div>
   <table width="100%" *ngIf="tags">
-    <p>{{ passage }}/{{ this.tags.length - 1 }}</p>
+    <p *ngIf="tags.length > photosParPage">{{ (passage / photosParPage) + 1 }}/{{ tags.length / photosParPage }}</p>
     <tr *ngFor="let image of images()">
       <td><button (click)="ouvrirInfo(tags[image.Id])"><img [src]="image.lien"></button></td>
     </tr>
   </table>
-  <button *ngIf="tags" (click)="Dropdown()" style="margin: 10px 10px;"><<</button>
-  <button *ngIf="tags" (click)="Dropup()" style="margin: 10px 10px;">>></button>
+  <div *ngIf="tags.length > photosParPage">
+    <button *ngIf="tags" (click)="Dropdown()" style="margin: 10px 10px;"><<</button>
+    <button *ngIf="tags" (click)="Dropup()" style="margin: 10px 10px;">>></button>
+  </div>
 </div>
