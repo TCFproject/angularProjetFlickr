@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FlickrAPIService } from '../flickr-api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { InfoImageDialogComponent } from '../info-image-dialog/info-image-dialog.component';
 
@@ -11,38 +10,55 @@ import { InfoImageDialogComponent } from '../info-image-dialog/info-image-dialog
 export class ButtonFieldComponent implements OnInit {
   @Input() tags;
 
-  constructor(private dialog: MatDialog) { }
-  passage = 0;
+  passage: number = 0;
+  photos = [];
+  photosParPage = 5;
 
+  constructor(private dialog: MatDialog) {}
   ngOnInit(): void {}
 
-  images(): { lien: string; Id: number }[] { 
-    return [
-      {lien: 'https://live.staticflickr.com/' + this.tags[this.passage].server + '/' + this.tags[this.passage].id + '_' + this.tags[this.passage].secret + '.jpg', Id: this.passage},
-      {lien: 'https://live.staticflickr.com/' + this.tags[this.passage + 1].server + '/' + this.tags[this.passage + 1].id + '_' + this.tags[this.passage + 1].secret + '.jpg', Id: this.passage + 1},
-      {lien: 'https://live.staticflickr.com/' + this.tags[this.passage + 2].server + '/' + this.tags[this.passage + 2].id + '_' + this.tags[this.passage + 2].secret + '.jpg', Id: this.passage + 2},
-      {lien: 'https://live.staticflickr.com/' + this.tags[this.passage + 3].server + '/' + this.tags[this.passage + 3].id + '_' + this.tags[this.passage + 3].secret + '.jpg', Id: this.passage + 3},
-      {lien: 'https://live.staticflickr.com/' + this.tags[this.passage + 4].server + '/' + this.tags[this.passage + 4].id + '_' + this.tags[this.passage + 4].secret + '.jpg', Id: this.passage + 4} 
-    ]; 
+  images(): { lien: string; Id: number }[] {
+    this.photos = [];
+    if (this.tags.length >= this.photosParPage) {
+      for (let i = 0; i < this.photosParPage; i += 1) {
+        this.photos.push({
+          lien: 'https://live.staticflickr.com/' + this.tags[this.passage + i].server + '/' + this.tags[this.passage + i].id + '_' + this.tags[this.passage + i].secret + '.jpg',
+          Id: this.passage + i
+        });
+      }
+      return this.photos;
+    } else {
+      for (let i = 0; i < this.tags.length; i += 1) {
+        this.photos.push({
+          lien: 'https://live.staticflickr.com/' + this.tags[i].server + '/' + this.tags[i].id + '_' + this.tags[i].secret + '.jpg',
+          Id: i
+        });
+      }
+      return this.photos;
+    }
   }
 
   Dropup() {
-    if (this.passage >= this.tags.length - 5) {
-      this.passage = this.tags.length - 5;
-    } else {
-      this.passage += 5;
+    if (this.tags.length >= this.photosParPage) {
+      if (this.passage >= this.tags.length - this.photosParPage) {
+        this.passage = this.tags.length - this.photosParPage;
+      } else {
+        this.passage += this.photosParPage;
+      }
     }
   }
 
   Dropdown() {
-    if (this.passage <= 0) {
-      this.passage = 0;
-    } else {
-      this.passage -= 5;
+    if (this.tags.length >= this.photosParPage) {
+      if (this.passage <= 0) {
+        this.passage = 0;
+      } else {
+        this.passage -= this.photosParPage;
+      }
     }
   }
 
   ouvrirInfo(info) {
-      const dial = this.dialog.open(InfoImageDialogComponent, {data: {infos: info}});
+    const dial = this.dialog.open(InfoImageDialogComponent, {data: {infos: info}});
   }
 }
