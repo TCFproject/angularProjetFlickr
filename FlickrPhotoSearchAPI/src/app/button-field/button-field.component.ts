@@ -12,10 +12,18 @@ export class ButtonFieldComponent implements OnInit {
 
   passage: number = 0;
   photos = [];
-  photosParPage = 5;
+  photosParPage = 3;
 
   constructor(private dialog: MatDialog) {}
   ngOnInit(): void {}
+
+  numeroDePage() {
+    return Math.ceil((this.passage / this.photosParPage) + 1);
+  }
+
+  nombreDePages() {
+    return Math.ceil(this.tags.length / this.photosParPage);
+  }
 
   images(): { lien: string; Id: number }[] {
     this.photos = [];
