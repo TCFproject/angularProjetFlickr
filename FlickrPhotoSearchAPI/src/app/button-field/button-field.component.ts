@@ -8,9 +8,9 @@ import { InfoImageDialogComponent } from '../info-image-dialog/info-image-dialog
   styleUrls: ['./button-field.component.css']
 })
 export class ButtonFieldComponent implements OnInit {
-  @Input() tags;
+  @Input() photosArray;
 
-  passage: number = 0;
+  numeroDePhoto: number = 0;
   photos = [];
   photosParPage = 3;
 
@@ -18,27 +18,27 @@ export class ButtonFieldComponent implements OnInit {
   ngOnInit(): void {}
 
   numeroDePage() {
-    return Math.ceil((this.passage / this.photosParPage) + 1);
+    return Math.ceil((this.numeroDePhoto / this.photosParPage) + 1);
   }
 
   nombreDePages() {
-    return Math.ceil(this.tags.length / this.photosParPage);
+    return Math.ceil(this.photosArray.length / this.photosParPage);
   }
 
   images(): { lien: string; Id: number }[] {
     this.photos = [];
-    if (this.tags.length >= this.photosParPage) {
+    if (this.photosArray.length >= this.photosParPage) {
       for (let i = 0; i < this.photosParPage; i += 1) {
         this.photos.push({
-          lien: 'https://live.staticflickr.com/' + this.tags[this.passage + i].server + '/' + this.tags[this.passage + i].id + '_' + this.tags[this.passage + i].secret + '.jpg',
-          Id: this.passage + i
+          lien: 'https://live.staticflickr.com/' + this.photosArray[this.numeroDePhoto + i].server + '/' + this.photosArray[this.numeroDePhoto + i].id + '_' + this.photosArray[this.numeroDePhoto + i].secret + '.jpg',
+          Id: this.numeroDePhoto + i
         });
       }
       return this.photos;
     } else {
-      for (let i = 0; i < this.tags.length; i += 1) {
+      for (let i = 0; i < this.photosArray.length; i += 1) {
         this.photos.push({
-          lien: 'https://live.staticflickr.com/' + this.tags[i].server + '/' + this.tags[i].id + '_' + this.tags[i].secret + '.jpg',
+          lien: 'https://live.staticflickr.com/' + this.photosArray[i].server + '/' + this.photosArray[i].id + '_' + this.photosArray[i].secret + '.jpg',
           Id: i
         });
       }
@@ -47,21 +47,25 @@ export class ButtonFieldComponent implements OnInit {
   }
 
   Dropup() {
-    if (this.tags.length >= this.photosParPage) {
-      if (this.passage >= this.tags.length - this.photosParPage) {
-        this.passage = this.tags.length - this.photosParPage;
+    if (this.photosArray.length >= this.photosParPage) {
+      if (this.photosArray.length % 2 === 0) {
+        if (this.numeroDePhoto >= this.photosArray.length - this.photosParPage) {
+          this.numeroDePhoto = this.photosArray.length - this.photosParPage;
+        } else {
+          this.numeroDePhoto += this.photosParPage;
+        }
       } else {
-        this.passage += this.photosParPage;
+
       }
     }
   }
 
   Dropdown() {
-    if (this.tags.length >= this.photosParPage) {
-      if (this.passage <= 0) {
-        this.passage = 0;
+    if (this.photosArray.length >= this.photosParPage) {
+      if (this.numeroDePhoto <= 0) {
+        this.numeroDePhoto = 0;
       } else {
-        this.passage -= this.photosParPage;
+        this.numeroDePhoto -= this.photosParPage;
       }
     }
   }
