@@ -10,9 +10,8 @@ import { FlickrAPIService } from '../flickr-api.service';
 export class InfoImageDialogComponent implements OnInit {
 
   constructor(
-    private imgApi: 
-      FlickrAPIService, 
-      @Inject(MAT_DIALOG_DATA) public data: { infos: object }
+    private imgApi: FlickrAPIService, 
+    @Inject(MAT_DIALOG_DATA) public data: { infos: object }
   ) { }
 
   auteur: string;
@@ -20,6 +19,7 @@ export class InfoImageDialogComponent implements OnInit {
   datepost: string;
 
   infos = this.data.infos;
+  
   ngOnInit(): void {
     // @ts-ignore
     this.imgApi.getFlickrInfo(this.infos.id).subscribe(data => {
