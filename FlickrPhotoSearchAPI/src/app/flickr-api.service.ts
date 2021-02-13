@@ -13,13 +13,9 @@ export class FlickrAPIService {
 
   constructor(private http: HttpClient) { }
 
-  api_key: string = 'e3ec972c03734ea369c37f2d382f6ed8';
+  api_key: string = '39293cea7646ac5004421a4acadfa1fa';
   NODEJS: string = "http://localhost:7000/images";
   httpHeaders: HttpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
-  photosInfos = [];
-  auteurs = [];
-  titres = [];
-  datespost = [];
 
   getFlickrImg(tag: string): Observable<any> {
     let apiUrl = 'https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + this.api_key + '&tags=' + tag + '&format=json&nojsoncallback=1';
@@ -31,15 +27,10 @@ export class FlickrAPIService {
               .pipe(
                 mergeMap(
                   (getResult: any) => {
-                    // TODO : getFlickrInfo pour le post
                     this.http.post(this.NODEJS, { 
                       "tag": tag,
-                      "photos": getResult.photos.photo,
-                      "auteurs": this.auteurs,
-                      "titres": this.titres,
-                      "datespost": this.datespost
+                      "photos": getResult.photos.photo
                     }, {headers: this.httpHeaders}).subscribe();
-                    // console.log(getResult);
                     return of(getResult);
                   }
                 )
