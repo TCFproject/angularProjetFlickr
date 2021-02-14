@@ -3,6 +3,10 @@ body {
   text-align: center;
 }
 
+p {
+  font-family: 'Trebuchet MS', sans-serif;
+}
+
 .jumbotron {
   padding: 30px 30px;
 }
