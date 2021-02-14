@@ -12,7 +12,7 @@ export class ButtonFieldComponent implements OnInit {
 
   numeroDePhoto: number = 0;
   photos = [];
-  photosParPage = 13;
+  photosParPage = 10;
 
   constructor(private dialog: MatDialog) {}
   ngOnInit(): void {}

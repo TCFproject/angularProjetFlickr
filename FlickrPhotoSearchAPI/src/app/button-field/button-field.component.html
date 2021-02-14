@@ -3,12 +3,12 @@
     <button *ngIf="photosArray" (click)="Dropdown()" class="btn btn-primary" style="margin: 10px 10px;"><<</button>
     <button *ngIf="photosArray" (click)="Dropup()" class="btn btn-primary" style="margin: 10px 10px;">>></button>
   </div>
-  <table width="100%" *ngIf="photosArray">
+  <div *ngIf="photosArray">
     <p *ngIf="photosArray.length > photosParPage">{{ numeroDePage() }}/{{ nombreDePages() }}</p>
-    <tr *ngFor="let image of images()">
-      <td><button (click)="ouvrirInfo(photosArray[image.Id])"><img [src]="image.lien"></button></td>
-    </tr>
-  </table>
+    <div class="photoContainer">
+      <button *ngFor="let image of images()" (click)="ouvrirInfo(photosArray[image.Id])" class="btnImage"><img [src]="image.lien" class="photoItems"></button>
+    </div>
+  </div>
   <div *ngIf="photosArray.length > photosParPage">
     <button *ngIf="photosArray" (click)="Dropdown()" class="btn btn-primary" style="margin: 10px 10px;"><<</button>
     <button *ngIf="photosArray" (click)="Dropup()" class="btn btn-primary" style="margin: 10px 10px;">>></button>

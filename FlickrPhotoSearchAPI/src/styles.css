@@ -11,6 +11,28 @@ p {
   padding: 30px 30px;
 }
 
+.photoContainer {
+  display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  width: 100%;
+  margin: auto auto;
+  justify-content: center;
+  align-items: stretch;
+  flex-flow: row wrap;
+}
+
+.photoItems {
+  max-height: 300px;
+}
+
+.btnImage {
+  padding: 0 0;
+  margin: 10px 10px;
+}
+
 .footer {
   text-align: center;
   position: sticky;
