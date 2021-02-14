@@ -8,6 +8,7 @@ import { FlickrAPIService } from '../flickr-api.service';
 })
 export class InputFieldComponent implements OnInit {
   list: [];
+  tag: String;
 
   constructor(private imgApi: FlickrAPIService) {}
   ngOnInit(): void {}
@@ -16,9 +17,10 @@ export class InputFieldComponent implements OnInit {
     this.imgApi.getFlickrImg(tag.value).subscribe(
       data => {
         if (data.stat === 'fail') {
-          alert('Image non-trouvée');
+          alert('Une erreur de communication avec Flickr est survenue.');
         }
         this.list = data.photos.photo;
+        this.tag = tag.value;
       }
     );
   }

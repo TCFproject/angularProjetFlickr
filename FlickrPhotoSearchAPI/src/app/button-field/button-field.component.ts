@@ -9,28 +9,34 @@ import { InfoImageDialogComponent } from '../info-image-dialog/info-image-dialog
 })
 export class ButtonFieldComponent implements OnInit {
   @Input() photosArray;
-
-  numeroDePhoto: number = 0;
+  @Input() tag;
+  
   photos = [];
-  photosParPage = 10;
-
+  numeroDePhoto: number = 0;
+  photosParPage: number = 10;
+  oldTag: String = "";
+  
   constructor(private dialog: MatDialog) {}
   ngOnInit(): void {}
-
+  
   numeroDePage() {
     return Math.ceil((this.numeroDePhoto / this.photosParPage) + 1);
   }
-
+  
   nombreDePages() {
     return Math.ceil(this.photosArray.length / this.photosParPage);
   }
-
+  
   reste() {
     return this.photosArray.length % this.photosParPage;
   }
-
+  
   images(): { lien: string; Id: number }[] {
     this.photos = [];
+    // remise à zéro de l'index des photos si le tag change
+    if (this.oldTag !== this.tag) {
+      this.numeroDePhoto = 0;
+    }
     // soit n le nombre de photos (max. 100)
     // n >= nombre de photos par page
     if (this.photosArray.length >= this.photosParPage) {
@@ -43,7 +49,7 @@ export class ButtonFieldComponent implements OnInit {
             Id: this.numeroDePhoto + i
           });
         }
-      // la dernière page de photos n'est pas remplie
+        // la dernière page de photos n'est pas remplie
       } else {
         // l'index de la photo n'est pas sur la dernière page
         if (this.numeroDePhoto < this.photosArray.length - this.photosParPage) {
@@ -53,7 +59,7 @@ export class ButtonFieldComponent implements OnInit {
               Id: this.numeroDePhoto + i
             });
           }
-        // l'index de la photo est sur la dernière page
+          // l'index de la photo est sur la dernière page
         } else {
           for (let i = 0; i < this.reste(); i += 1) {
             this.photos.push({
@@ -63,7 +69,7 @@ export class ButtonFieldComponent implements OnInit {
           }
         }
       }
-    // n < nombre de photos par page
+      // n < nombre de photos par page
     } else {
       // on boucle jusqu'à n-1
       for (let i = 0; i < this.photosArray.length; i += 1) {
@@ -73,6 +79,7 @@ export class ButtonFieldComponent implements OnInit {
         });
       }
     }
+    this.oldTag = this.tag;
     return this.photos;
   }
 
