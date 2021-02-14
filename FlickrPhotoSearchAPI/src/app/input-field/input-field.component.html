@@ -1,4 +1,8 @@
-<input type="text" #tags name="inputSearch" id="inputSearch" placeholder="tag">
-<button (click)="affiche(tags)" class="mat-raised-button">Rechercher</button>
+<div style="display: flex; flex-direction: column; align-items: center;">
+  <form class="form-inline">
+    <input type="text" #tags name="inputSearch" id="inputSearch" placeholder="tag" class="form-control mr-sm-2">
+    <button (click)="affiche(tags)" class="btn btn-primary">Rechercher</button>
+  </form>
+</div>
 <br><br>
 <app-button-field [photosArray]="list"></app-button-field>
